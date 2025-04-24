@@ -1,17 +1,94 @@
-Para rodar o projeto em backend, devem-se fazer algumas configurações iniciais.
-Primeiro vamos baixar o que precisamos e depois configurar as variaveis de ambiente
-Para o gradle, faça download da versão 8.13 (https://gradle.org/releases/), crie a estrutura de arquivos C:\Gradle --> aqui voce descompacta o zip gradle 8.13 que voce baixou, entao ficaria assim: C:\Gradle\gradle-8.13
-É feito dessa foram pois em outros projetos voce pode ter multiplas versões de Gradle, a mesma coisa vale para o Java.
-Para configurar a JDK, precisamos ter a versão 17 do Java (https://docs.aws.amazon.com/corretto/latest/corretto-17-ug/downloads-list.html), que é o que o Spring Boot usa. Então deve ser feito algo parecido com o que foi feito no gradle, deixando a estrutura de arquivos assim C:\Java\jdk17.0.15_6
-Feitos os downloads e configuradas as JDKs, agora tem que configurar as variaveis de ambiente do Windows para apontarem para os locais corretos.
-Nas propriedades avançadas do sistema, na aba avançado, o ultimo botão é o das variaveis de ambiente. No segundo bloco, com o label de Variaveis do sistema, clique em "Novo", na caixa que abrir voce vai colocar o nome da variavel como JAVA_HOME e o valor dela como o caminho da sua JDK C:\Java\jdk17.0.15_6
-Clique em OK e procure pela variavel Path, edite ela e adicione a variavel que acabamso de criar como %JAVA_HOME%\bin , tambem deve ser adicionado o caminho do gradle C:\Gradle\gradle-8.13\bin
-Para verificar se tudo isso funcionou, abra o CMD e digite java --version , e gradle -v
+# 🛠️ Configuração do Ambiente - Projeto Backend (Spring Boot + Gradle)
 
-Tendo isso configurado é só abrir o seu VScode e configurar ele para poder rodar o projeto em SpringBoot e Java.
-Instale as extensões:
-  Extension Pack for Java
-  Spring Boot Extension Pack
-  Auto Import
+Este guia irá te ajudar a configurar o ambiente necessário para rodar o projeto backend com **Java 17**, **Spring Boot** e **Gradle**.
 
-Tendo isso instalado, reinicie o VScode, abra o console e digite gradlew clean build --refresh-dependencies , se nao der erros, va na classe DeliveryApplication e rode como projeto Java, agora é só usar os endpoints!
+---
+
+## 📥 Requisitos
+
+- Java JDK 17 (Amazon Corretto)
+- Gradle 8.13
+- Visual Studio Code (ou outro editor compatível)
+- Git (opcional, mas recomendado)
+
+---
+
+## 💻 Instruções para Windows
+
+### 1. Baixar e configurar o Gradle
+
+- Acesse: [https://gradle.org/releases/](https://gradle.org/releases/)
+- Baixe o **Gradle 8.13 (binary-only zip)**.
+- Crie a estrutura de pastas:
+  ```
+  C:\Gradle
+  ```
+- Extraia o conteúdo do `.zip` para:
+  ```
+  C:\Gradle\gradle-8.13
+  ```
+
+### 2. Baixar e configurar o Java (JDK 17)
+
+- Acesse: [Amazon Corretto 17 - Downloads](https://docs.aws.amazon.com/corretto/latest/corretto-17-ug/downloads-list.html)
+- Baixe a versão compatível com Windows.
+- Crie a pasta:
+  ```
+  C:\Java\jdk17.0.15_6
+  ```
+- Extraia os arquivos da JDK para essa pasta.
+
+### 3. Configurar variáveis de ambiente
+
+1. Vá em **Propriedades do Sistema > Avançado > Variáveis de Ambiente**
+2. Na seção **Variáveis do sistema**, clique em **Novo**:
+   - Nome: `JAVA_HOME`
+   - Valor: `C:\Java\jdk17.0.15_6`
+3. Ainda em **Variáveis do sistema**, localize e edite `Path`. Adicione:
+   ```
+   %JAVA_HOME%\bin
+   C:\Gradle\gradle-8.13\bin
+   ```
+
+### 4. Verificar instalações
+
+Abra o terminal (CMD) e execute:
+
+```bash
+java --version
+gradle -v
+```
+
+Ambos devem retornar as versões instaladas.
+
+---
+
+## 🧩 Configuração do VS Code
+
+Instale as seguintes extensões:
+
+- [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
+- [Spring Boot Extension Pack](https://marketplace.visualstudio.com/items?itemName=pivotal.vscode-spring-boot)
+- [Auto Import](https://marketplace.visualstudio.com/items?itemName=steoates.autoimport)
+
+Reinicie o VS Code após a instalação.
+
+---
+
+## ▶️ Rodando o Projeto
+
+No terminal (dentro da pasta do projeto), execute:
+
+```bash
+./gradlew clean build --refresh-dependencies
+```
+
+Se o build for bem-sucedido, localize a classe `DeliveryApplication.java` e execute como **Java Application**.
+
+---
+
+## ✅ Pronto!
+
+Agora o ambiente está configurado e o projeto backend está pronto para rodar. Você já pode começar a usar os endpoints REST.
+
+---
