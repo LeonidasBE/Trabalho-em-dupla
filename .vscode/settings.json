@@ -2,5 +2,6 @@
     "liveServer.settings.port": 5501,
     "cSpell.words": [
         "pedido"
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
 }

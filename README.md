@@ -77,7 +77,7 @@ Reinicie o VS Code após a instalação.
 
 ## ▶️ Rodando o Projeto
 
-No terminal (dentro da pasta do projeto), execute:
+No terminal (dentro da pasta backend\delivery), execute:
 
 ```bash
 ./gradlew clean build --refresh-dependencies
