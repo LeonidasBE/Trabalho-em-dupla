@@ -20,7 +20,7 @@
         <div class="nav-icons">
             <div id="search-cart-icon">
                 <a href="#"><i class="bx bx-search-alt-2"></i></a>
-                <a href="#"><i class="bx bxs-cart-alt"></i></a>
+                <a href="listaDePedidos.html"><i class="bx bxs-cart-alt"></i></a>
             </div>
         </div>
     </header>
@@ -29,10 +29,12 @@
             <h2>Novidades</h2>            
         </div>
         <div class="popular-games">
-            <img src="images/hollow-knight.jpg" alt="">
-            <img src="images/celeste.jpg" alt="">
-            <img src="images/noita.jpg" alt="">
-        </div>
+            <div class="gameImages">
+              <img src="images/hollow-knight.jpg" alt="">
+              <img src="images/celeste.jpg" alt="">
+              <img src="images/noita.jpg" alt="">              
+            </div>
+          </div>
     </section>      
     <section class="sale" id="sale">
         <div class="middle-text">
@@ -48,7 +50,7 @@
                         <h6>R$69.00</h6>
                     </div>
                     <div class="s-btnn">
-                        <a onclick="realizarPedido()">Comprar</a>
+                        <a onclick="realizarPedido(this)">Comprar</a>
                     </div>
                 </div>                
             </div>
@@ -61,7 +63,7 @@
                         <h6>R$69.00</h6>
                     </div>
                     <div class="s-btnn">
-                        <a onclick="listarPedidos()">Comprar</a>
+                        <a onclick="realizarPedido(this)">Comprar</a>
                     </div>
                 </div>               
             </div>
@@ -144,7 +146,7 @@
                 </div>                
             </div>                        
         </div>        
-    </section>  
+    </section>
     <div class="footer_bottom">
         <p>@ Copyright 2025 <span>Los Doentes</span>. All rights reserved.</p>
     </div>      
