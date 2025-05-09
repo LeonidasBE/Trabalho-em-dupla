@@ -1,12 +1,16 @@
+window.onload = () => {
+    showGames(gameList);
+};
+
+window.addEventListener("scroll",function(){
+    header.classList.toggle("sticky",window.scrollY > 10);
+});
+
 const header = document.querySelector("header");
 const urlPadrao = "http://localhost:8080/api/pedido/pedidos";
 const gameImages = document.querySelector('.gameImages');
 gameImages.innerHTML += gameImages.innerHTML; 
 gameImages.innerHTML += gameImages.innerHTML; 
-
-window.addEventListener("scroll",function(){
-    header.classList.toggle("sticky",window.scrollY > 10);
-});
 
 function listarPedidos() {
     httpGetListPedidosAsync(function(response){
@@ -14,43 +18,104 @@ function listarPedidos() {
     })
 }
 
-// function realizarPedido() {
-//     const novoPedido = {
-//         cliente : "teste",
-//         enderecoEntrega : "endereço Teste",
-//         status : "Pendente",
-//         valorTotal : 10.0,
-//     }
+const gameList = [
+    {
+        nome: "Hollow Knight",
+        imagem: "images/hollow-knight.jpg",
+        preco: 69.00,
+        descricao: "Descrição descrição descrição."
+    },
+    {
+        nome: "Hades",
+        imagem: "images/hades.jpg",
+        preco: 69.00,
+        descricao: "Descrição descrição descrição."
+    },
+    {
+        nome: "Celeste",
+        imagem: "images/celeste.jpg",
+        preco: 69.00,
+        descricao: "Descrição descrição descrição."
+    },
+    {
+        nome: "Noita",
+        imagem: "images/noita.jpg",
+        preco: 69.00,
+        descricao: "Descrição descrição descrição."
+    },
+];
 
-//     httpPostListPedidosAsync(novoPedido, function(response){
-//         console.log('Pedido realizado', response);
-//     })
-// }
+function showGames(list) {
+    const container = document.querySelector(".sale-content");
+    list.forEach((game, index) => {
+        const row = document.createElement("div");
+        row.classList.add("row");
+        row.innerHTML = `
+            <img src="${game.imagem}" alt="">
+            <h3>${game.nome}</h3>
+            <p>${game.descricao}</p>
+            <div class="in-text">
+                <div class="price">
+                    <h6>R$ ${game.preco}</h6>
+                </div>
+                <div class="s-btnn">
+                    <a class="comprar-btn" data-index="${index}">Comprar</a>
+                </div>
+            </div>
+        `;
+        container.appendChild(row);
+    });
 
+    const buttons = container.querySelectorAll(".comprar-btn");
+    buttons.forEach(btn => {
+        btn.addEventListener("click", function() {
+            const index = this.getAttribute("data-index");
+            realizarPedido(list[index]);
+        });
+    });
+}
 
-function realizarPedido(elemento) {
-    const row = elemento.closest(".row");
-    const imagem = row.querySelector("img").getAttribute("src");
-    const nome = row.querySelector("h3").textContent;
-    const preco = row.querySelector(".price h6").textContent;
-    const descricao = row.querySelector("p").textContent;
-
+function realizarPedido(game) {
     const novoPedido = {
         cliente: "teste",
         enderecoEntrega: "endereço Teste",
         status: "Pendente",
-        nomeJogo: nome,
-        imagem: imagem,
-        valorTotal: preco,
-        descricao: descricao,
+        nomeJogo: game.nome,
+        imagem: game.imagem,
+        valorTotal: game.preco,
+        descricao: game.descricao,
     };
 
-    console.log('Pedido realizado', novoPedido);
+    console.log("Pedido realizado", novoPedido);
 
     httpPostListPedidosAsync(novoPedido, function(response) {
-        console.log('Pedido realizado', response);
+        console.log("Pedido enviado com sucesso", response);
     });
 }
+
+// function realizarPedido(elemento) {
+//     const row = elemento.closest(".row");
+//     const imagem = row.querySelector("img").getAttribute("src");
+//     const nome = row.querySelector("h3").textContent;
+//     const preco = row.querySelector(".price h6").textContent;
+//     const descricao = row.querySelector("p").textContent;
+
+//     const novoPedido = {
+//         cliente: "teste",
+//         enderecoEntrega: "endereço Teste",
+//         status: "Pendente",
+//         nomeJogo: nome,
+//         imagem: imagem,
+//         valorTotal: preco,
+//         descricao: descricao,
+//     };
+
+//     console.log('Pedido realizado', novoPedido);
+
+//     httpPostListPedidosAsync(novoPedido, function(response) {
+//         console.log('Pedido realizado', response);
+//     });
+// }
 
 function atualizarPedido() {
     const pedidoAtualizado = {
